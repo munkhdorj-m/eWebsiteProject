@@ -1,0 +1,13 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Raleway", sans-serif;
+  background-image: url("./assets/bg.jpg");
+}
+
+button {
+  font-family: "Raleway", sans-serif;
+}
