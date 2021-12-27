@@ -35,7 +35,7 @@ app.post("/api/login", async (req, res) => {
   if (user) {
     res.json({ status: "ok", user: true });
   } else {
-    res.json({ status: "Error", user: false });
+    res.json({ status: "error", user: false });
   }
 });
 

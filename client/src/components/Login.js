@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import "../styles/Join.css";
+import swal from "sweetalert";
 
 const Join = () => {
   const [email, SetEmail] = useState("");
@@ -8,7 +9,7 @@ const Join = () => {
 
   async function loginUser(event) {
     event.preventDefault();
-    const response = fetch("http://localhost:2000/api/login", {
+    const response = await fetch("http://localhost:2000/api/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -19,8 +20,24 @@ const Join = () => {
       }),
     });
 
-    const data = await response.json.data;
-    console.log(data);
+    const data = await response.json();
+    if (data.status == "error") {
+      console.log("user dont exist");
+      return swal({
+        title: "User Dont Exist",
+        text: "Please check your password and email",
+        icon: "warning",
+        dangerMode: true,
+      });
+    } else {
+      console.log("successfull");
+      return swal({
+        title: "Success",
+        text: "Welcome back",
+        icon: "success",
+        dangerMode: false,
+      });
+    }
   }
 
   return (

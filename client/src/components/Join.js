@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import "../styles/Join.css";
+import swal from "sweetalert";
 
 const Join = () => {
   const [name, SetName] = useState("");
@@ -23,7 +24,23 @@ const Join = () => {
     });
 
     const data = await response.json();
-    console.log(data.error);
+    if (data.status == "error") {
+      console.log("already user has been registered");
+      return swal({
+        title: "Error!",
+        text: "User has already been registered",
+        icon: "warning",
+        dangerMode: true,
+      });
+    } else {
+      console.log("successfully registered");
+      return swal({
+        title: "Success",
+        text: "You have been successfully registered",
+        icon: "success",
+        dangerMode: false,
+      });
+    }
   }
 
   return (
